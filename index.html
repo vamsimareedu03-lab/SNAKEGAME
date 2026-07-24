@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>SnakeVerse</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- LOGIN -->
+<section id="screen-login" class="screen active">
+  <div class="card">
+    <div class="logo">🐍 SnakeVerse</div>
+    <p class="tagline">Enter the arena</p>
+    <input type="email" id="emailInput" placeholder="Enter your email" autocomplete="email" />
+    <p id="loginError" class="error"></p>
+    <button id="loginBtn" type="button">Continue</button>
+  </div>
+</section>
+
+<!-- LOADING -->
+<section id="screen-loading" class="screen">
+  <div class="loading-wrap">
+    <div class="snake-loader">🐍</div>
+    <div class="bar-container"><div id="loadBar" class="bar"></div></div>
+    <div class="loading-text">LOADING SNAKEVERSE...</div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section id="screen-menu" class="screen">
+  <div class="menu-wrap">
+    <h1 class="title">🐍 SnakeVerse</h1>
+    <p id="welcomeText" class="welcome"></p>
+    <div class="menu-buttons">
+      <button data-nav="screen-level">Play Game</button>
+      <button id="leaderboardNavBtn">Leaderboard</button>
+      <button data-nav="screen-settings">Settings</button>
+      <button id="exitBtn">Exit</button>
+    </div>
+    <p class="switch-account" id="switchAccountBtn">Not you? Switch account</p>
+  </div>
+</section>
+
+<!-- LEVEL SELECT -->
+<section id="screen-level" class="screen">
+  <div class="menu-wrap">
+    <h1 class="title">Select Level</h1>
+    <div class="menu-buttons">
+      <button data-level="easy" data-speed="220">Easy</button>
+      <button data-level="medium" data-speed="150">Medium</button>
+      <button data-level="hard" data-speed="100">Hard</button>
+      <button data-nav="screen-menu">Back</button>
+    </div>
+  </div>
+</section>
+
+<!-- GAME -->
+<section id="screen-game" class="screen">
+  <div class="topbar">
+    <div class="brand">🐍 SnakeVerse</div>
+    <div class="stat">Player: <span id="hudEmail"></span></div>
+    <div class="stat">Score: <span id="hudScore">0</span></div>
+    <div class="stat">Level: <span id="hudLevel"></span></div>
+    <div class="controls">
+      <button id="pauseBtn">⏸</button>
+      <button id="restartBtn">⟲</button>
+      <button id="muteBtn">🔊</button>
+    </div>
+  </div>
+
+  <div class="canvas-wrap">
+    <canvas id="gameCanvas" width="600" height="600"></canvas>
+    <div id="joystick" class="joystick">
+      <div id="joystickThumb" class="joystick-thumb"></div>
+    </div>
+    <div id="arrowControls" class="arrow-controls hidden">
+      <button id="arrowUp" class="arrow-btn arrow-up" type="button">↑</button>
+      <button id="arrowLeft" class="arrow-btn arrow-left" type="button">←</button>
+      <button id="arrowRight" class="arrow-btn arrow-right" type="button">→</button>
+      <button id="arrowDown" class="arrow-btn arrow-down" type="button">↓</button>
+    </div>
+  </div>
+
+  <div id="gameOverModal" class="modal hidden">
+    <div class="modal-box">
+      <h2>Game Over</h2>
+      <p>Final Score: <span id="finalScore">0</span></p>
+      <p class="small" id="finalEmail"></p>
+      <div class="modal-buttons">
+        <button id="playAgainBtn">Play Again</button>
+        <button data-nav="screen-menu">Main Menu</button>
+        <button id="leaderboardFromGameOverBtn">Leaderboard</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LEADERBOARD -->
+<section id="screen-leaderboard" class="screen">
+  <div class="menu-wrap">
+    <h1 class="title">Leaderboard</h1>
+    <table class="board">
+      <thead><tr><th>#</th><th>Email</th><th>Score</th><th>Date</th></tr></thead>
+      <tbody id="leaderboardRows"></tbody>
+    </table>
+    <div class="menu-buttons" style="margin-top:24px;">
+      <button data-nav="screen-menu">Back to Menu</button>
+    </div>
+  </div>
+</section>
+
+<!-- SETTINGS -->
+<section id="screen-settings" class="screen">
+  <div class="menu-wrap">
+    <h1 class="title">Settings</h1>
+    <div class="row"><span>Music</span><button id="musicToggle"></button></div>
+    <div class="row"><span>Sound</span><button id="soundToggle"></button></div>
+    <div class="row control-method-row">
+      <span>Control Method</span>
+      <div class="control-method-options">
+        <button class="control-option-btn" data-control="arrows" type="button">Arrow Buttons</button>
+        <button class="control-option-btn" data-control="joystick" type="button">Joystick</button>
+        <button class="control-option-btn" data-control="auto" type="button">Auto</button>
+      </div>
+    </div>
+    <div class="menu-buttons">
+      <button id="resetScoresBtn">Reset High Scores</button>
+      <button data-nav="screen-menu">Back</button>
+    </div>
+  </div>
+</section>
+
+<!-- AUDIO -->
+<audio id="gameoverSound" src="sounds/gameover.mp3"></audio>
+<audio id="bgMusic" src="sounds/background.mp3" loop></audio>
+<audio id="ambientForest" src="sounds/ambient_forest.mp3" loop></audio>
+<audio id="clickSound" src="sounds/click.mp3"></audio>
+<audio id="highscoreSound" src="sounds/highscore.mp3"></audio>
+<audio id="eatAnt" src="sounds/eat_insect.mp3"></audio>
+<audio id="eatFrog" src="sounds/eat_frog.mp3"></audio>
+<audio id="eatMouse" src="sounds/eat_mouse.mp3"></audio>
+<audio id="eatRat" src="sounds/eat_rat.mp3"></audio>
+<audio id="eatRabbit" src="sounds/eat_rabbit.mp3"></audio>
+
+<script src="script.js"></script>
+</body>
+</html>
